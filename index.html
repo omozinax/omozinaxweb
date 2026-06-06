@@ -20,7 +20,7 @@
     --gris-medio: #5F5E5A;
     --gris-claro: #F1EFE8;
     --blanco: #FFFDF8;
-    --bici-naranja: #E65F2B; /* Color especial para la sección ciclista */
+    --bici-naranja: #E65F2B;
   }
 
   html { scroll-behavior: smooth; }
@@ -219,4 +219,442 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-top: 3
+    margin-top: 3rem;
+  }
+  .lugar-card { overflow: hidden; }
+  .lugar-img {
+    width: 100%; height: 220px;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.85);
+    transition: filter 0.3s, transform 0.4s;
+  }
+  .lugar-card:hover .lugar-img { filter: saturate(1.1); transform: scale(1.02); }
+  .lugar-body { padding: 1.25rem 0; }
+  .lugar-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gris-oscuro);
+    margin-bottom: 0.5rem;
+  }
+  .lugar-desc { font-size: 0.9rem; color: var(--gris-medio); }
+
+  /* SECCIÓN BICIVOLADORES */
+  #bicivoladores { background: #1E2229; color: #fff; }
+  #bicivoladores .section-label { color: var(--bici-naranja); }
+  #bicivoladores .section-title { color: #fff; }
+  #bicivoladores .section-title em { color: var(--bici-naranja); font-style: normal; }
+  #bicivoladores .divider { background: var(--bici-naranja); width: 60px; }
+  .bici-intro { color: #A0A5B0; max-width: 700px; font-size: 1.05rem; margin-bottom: 3rem; }
+  .bici-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; }
+  .bici-info-block { background: #262B35; padding: 2rem; border-radius: 4px; margin-bottom: 1.5rem; border-top: 3px solid var(--bici-naranja); }
+  .bici-info-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; color: #fff; display: flex; align-items: center; gap: 0.5rem;}
+  .bici-info-text { color: #BCBFC6; font-size: 0.95rem; }
+  .bici-rutas-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; color: #fff; }
+  .bici-ruta-card { background: #262B35; padding: 1.25rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; transition: background 0.2s; }
+  .bici-ruta-card:hover { background: #2E3440; }
+  .bici-ruta-name { font-weight: 700; font-size: 0.95rem; color: #fff; margin-bottom: 0.2rem; }
+  .bici-ruta-meta { font-size: 0.82rem; color: #9095A0; }
+  .bici-link { text-decoration: none; color: var(--bici-naranja); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
+  .bici-link:hover { color: #ff814e; }
+
+  /* GALERÍA */
+  #galeria { background: var(--tierra-suave); }
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+  .gal-item { overflow: hidden; }
+  .gal-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.8);
+    transition: filter 0.4s, transform 0.5s;
+  }
+  .gal-item:hover img { filter: saturate(1.15); transform: scale(1.05); }
+  .gal-item:first-child { grid-row: 1 / 3; }
+
+  /* NATURALEZA */
+  #naturaleza { background: var(--verde); color: #fff; }
+  #naturaleza .section-label { color: var(--tierra-claro); }
+  #naturaleza .section-title { color: #fff; }
+  #naturaleza .section-title em { color: var(--tierra-claro); }
+  #naturaleza .divider { background: var(--tierra-claro); }
+  .nat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .nat-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 2rem;
+  }
+  .nat-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .nat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+  .nat-text { font-size: 0.92rem; color: rgba(255,255,255,0.75); }
+
+  /* COMO LLEGAR */
+  #llegada { background: var(--blanco); }
+  .llegada-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .llegada-info p { color: var(--gris-medio); margin-bottom: 1rem; }
+  .llegada-dato {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .llegada-icono {
+    width: 40px; height: 40px;
+    background: var(--verde-suave);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+  }
+  .llegada-dato-titulo { font-weight: 700; font-size: 0.9rem; color: var(--gris-oscuro); margin-bottom: 0.2rem; }
+  .llegada-dato-texto { font-size: 0.88rem; color: var(--gris-medio); }
+  .map-placeholder {
+    background: var(--gris-claro);
+    height: 340px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #ddd;
+    font-size: 0.9rem;
+    color: var(--gris-medio);
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--gris-oscuro);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+  }
+  footer span { color: rgba(255,255,255,0.8); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { display: none; }
+    .hero-content { padding: 2rem 1.5rem; }
+    section { padding: 3rem 1.2rem; }
+    .intro-grid, .historia-content, .llegada-grid, .bici-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .lugares-grid { grid-template-columns: 1fr; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gal-item:first-child { grid-row: auto; grid-column: 1 / 3; }
+    .nat-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Matet</div>
+  <ul class="nav-links">
+    <li><a href="#intro">El Pueblo</a></li>
+    <li><a href="#historia">Historia</a></li>
+    <li><a href="#lugares">Qué Ver</a></li>
+    <li><a href="#bicivoladores" class="nav-bici">Bicivoladores</a></li>
+    <li><a href="#naturaleza">Naturaleza</a></li>
+    <li><a href="#llegada">Cómo Llegar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Sierra de Espadán · Castellón</p>
+    <h1>Matet</h1>
+    <p class="hero-sub">Un tesoro escondido en el corazón de la sierra, a los pies de una torre árabe milenaria.</p>
+    <a href="#intro" class="hero-btn">Descubrir el pueblo</a>
+  </div>
+</section>
+
+<section id="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="section-label">El pueblo</p>
+        <h2 class="section-title">Un pueblo <em>entre montañas</em></h2>
+        <div class="divider"></div>
+        <p>Matet es un municipio de la comarca del Alto Palancia, situado en la vertiente septentrional de la Sierra de Espadán. Sus calles estrechas y adaptadas a las curvas del terreno revelan su origen árabe, y el paisaje que lo rodea — pinares de pino rodeno, alcornocales, barrancos y fuentes — lo convierten en un destino singular.</p>
+        <p>El pueblo crece a la sombra de la Torre del Pilón, una torre defensiva árabe del siglo XI que corona la colina sobre la que se asienta el casco urbano. Flanqueado por el barranco del Pilar y la rambla del Perrudo, Matet vive ligado al agua y a la tierra desde tiempos inmedievales.</p>
+        <p>Su mayor orgullo gastronómico es el aceite de oliva virgen, producido en la almazara tradicional del pueblo y reconocido como uno de los mejores de la comarca.</p>
+      </div>
+      <div class="intro-stats">
+        <div class="stat-card">
+          <div class="stat-num">94</div>
+          <div class="stat-label">Habitantes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">14,89</div>
+          <div class="stat-label">km² de término municipal</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">S. XII</div>
+          <div class="stat-label">Origen árabe</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">680 m</div>
+          <div class="stat-label">Altitud aproximada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="historia">
+  <div class="container">
+    <div class="historia-content">
+      <div>
+        <p class="section-label">Historia</p>
+        <h2 class="section-title"><em>Siglos</em> de historia</h2>
+        <div class="divider"></div>
+        <div class="historia-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">S. XII–XIII</div>
+            <div class="timeline-text">Fundación del núcleo de población de origen árabe, cuyo trazado urbano aún se conserva.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">1238</div>
+            <div class="timeline-text">Tras la Reconquista de Jaime I, el pueblo es donado a Berenguer de Palou, obispo de Barcelona.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">1582</div>
+            <div class="timeline-text">Se otorga la Carta Puebla de Matet por los Condes de Aranda en Vall de Almonacid.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">1998</div>
+            <div class="timeline-text">Declaración del Parque Natural de la Sierra de Espadán, que protege el entorno natural del municipio.</div>
+          </div>
+        </div>
+      </div>
+      <div class="historia-main">
+        <p>El origen de Matet es musulmán, como atestigua su característico trazado urbano de calles estrechas adaptadas al relieve. La fecha más probable de su fundación se sitúa entre finales del siglo XII y comienzos del XIII.</p>
+        <p>Tras la Reconquista, la localidad pasó por diferentes señoríos: perteneció al Duque de Sessa, fue confiscada por el rey, vendida al Conde de Aranda y finalmente al dominio de don Pedro de Urrea. En 1582 se formalizó la Carta Puebla que consolidó la repoblación cristiana.</p>
+        <p>Coronando el pueblo, la Torre del Pilón es el símbolo más visible de ese pasado árabe. Esta construcción defensiva de cuerpo cilíndrico y mampostería, declarada Bien de Interés Cultural, ha sido restaurada y hoy puede visitarse, ofreciendo desde su cima vistas espectaculares de la sierra.</p>
+        <p>A lo largo de los siglos, Matet desarrolló una economía basada en el cultivo de olivos, frutales y hortalizas, además de una importante producción de vino que llegó a superar los 80.000 litros anuales a principios del siglo XX, antes de que la filoxera arrasara los viñedos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lugares">
+  <div class="container">
+    <p class="section-label">Patrimonio</p>
+    <h2 class="section-title">Qué <em>ver y visitar</em></h2>
+    <div class="divider"></div>
+    <div class="lugares-grid">
+      <div class="lugar-card">
+        <div style="overflow:hidden; height:220px;">
+          <img class="lugar-img" src="pilon.jpg" alt="Torre del Pilón">
+        </div>
+        <div class="lugar-body">
+          <div class="lugar-nombre">Torre del Pilón</div>
+          <div class="lugar-desc">Torre defensiva árabe del siglo XI que corona la colina donde se asienta el pueblo. Restaurada y declarada Bien de Interés Cultural, desde su cima se dominan vistas impresionante de la sierra.</div>
+        </div>
+      </div>
+      <div class="lugar-card">
+        <div style="overflow:hidden; height:220px;">
+          <img class="lugar-img" src="pueblo.jpg" alt="Iglesia de San Juan Bautista">
+        </div>
+        <div class="lugar-body">
+          <div class="lugar-nombre">Iglesia de San Juan Bautista</div>
+          <div class="lugar-desc">Iglesia parroquial del siglo XVII, de una sola nave rectangular con cuatro capillas a cada lado. Su esbelto campanario es uno de los referentes visuales del casco urbano.</div>
+        </div>
+      </div>
+      <div class="lugar-card">
+        <div style="overflow:hidden; height:220px;">
+          <img class="lugar-img" src="aceite.jpg" alt="El Ruejo y la Almazara">
+        </div>
+        <div class="lugar-body">
+          <div class="lugar-nombre">El Ruejo y la Almazara</div>
+          <div class="lugar-desc">A la entrada del pueblo, el Ruejo — una antigua piedra de molino — rinde homenaje al aceite de oliva virgen, principal producto agrícola y orgullo gastronómico de Matet.</div>
+        </div>
+      </div>
+      <div class="lugar-card">
+        <div style="overflow:hidden; height:220px; background:#b0c8d8; display:flex; align-items:center; justify-content:center;">
+          <span style="color:#185FA5; font-size:3rem;">💧</span>
+        </div>
+        <div class="lugar-body">
+          <div class="lugar-nombre">Fuente que Nace</div>
+          <div class="lugar-desc">Manantial natural junto al que se exhibe una imagen de San Antón. Próximo a él, la Fuente de los Burros cuenta con un merendero ideal para disfrutar del agua fresca y el entorno.</div>
+        </div>
+      </div>
+      <div class="lugar-card">
+        <div style="overflow:hidden; height:220px; background:#c8b0d8; display:flex; align-items:center; justify-content:center;">
+          <span style="color:#533AB7; font-size:3rem;">⛩️</span>
+        </div>
+        <div class="lugar-body">
+          <div class="lugar-nombre">Ermita de Santa Bárbara</div>
+          <div class="lugar-desc">Situada en la cima del monte del Calvario, esta ermita ha sido restaurada recientemente y ofrece una panorámica privilegiada del término municipal y la sierra.</div>
+        </div>
+      </div>
+      <div class="lugar-card">
+        <div style="overflow:hidden; height:220px; background:#d8c8c0; display:flex; align-items:center; justify-content:center;">
+          <span style="color:#5F5E5A; font-size:3rem;">🏛️</span>
+        </div>
+        <div class="lugar-body">
+          <div class="lugar-nombre">El Moné</div>
+          <div class="lugar-desc">Monumento pétreo en sillarejo irregular construido en 1994, junto a una fuente de agua pura canalizada desde la Fuente de San Antonio Abad. Un rincón tranquilo a las afueras del pueblo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bicivoladores">
+  <div class="container">
+    <p class="section-label">Club Ciclista</p>
+    <h2 class="section-title">Peña <em>Bicivoladores</em></h2>
+    <div class="divider"></div>
+    <p class="bici-intro">El grupo de ciclismo de Matet. Apasionados de las dos ruedas, las sendas de la Sierra de Espadán y, por supuesto, del buen ambiente y los almuerzos en el pueblo.</p>
+    
+    <div class="bici-grid">
+      <div>
+        <div class="bici-info-block">
+          <div class="bici-info-title">🚴 Salidas y Quedadas</div>
+          <div class="bici-info-text">Salimos regularmente los fines de semana y festivos. El punto de encuentro habitual es la plaza del pueblo. Si estás por Matet con tu bici de montaña o de carretera, ¡súmate a la grupeta!</div>
+        </div>
+        <div class="bici-info-block">
+          <div class="bici-info-title">🌲 El Terreno</div>
+          <div class="bici-info-text">Rodamos por el corazón del Parque Natural. Desde subidas exigentes rodeadas de alcornoques hasta descensos técnicos por los barrancos de Matet, Pavías o Higueras.</div>
+        </div>
+        <div class="bici-info-block">
+          <div class="bici-info-title">🥪 El Sagrado Almuerzo</div>
+          <div class="bici-info-text">Porque una buena ruta no está completa sin una buena parada. Al terminar la jornada, nos reunimos en los bares del pueblo para disfrutar de un buen "esmorzaret" tradicional con carajillo.</div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="bici-rutas-title">Nuestras Rutas Top</h3>
+        
+        <div class="bici-ruta-card">
+          <div>
+            <div class="bici-ruta-name">Ruta 1: Vuelta a los Barrancos</div>
+            <div class="bici-ruta-meta">MTB · 32 km · +850m desnivel</div>
+          </div>
+          <a href="#" class="bici-link">Ver Track</a>
+        </div>
+
+        <div class="bici-ruta-card">
+          <div>
+            <div class="bici-ruta-name">Ruta 2: Subida al Alto de Espadán</div>
+            <div class="bici-ruta-meta">Carretera · 45 km · +1.100m desnivel</div>
+          </div>
+          <a href="#" class="bici-link">Ver Track</a>
+        </div>
+
+        <div class="bici-ruta-card">
+          <div>
+            <div class="bici-ruta-name">Ruta 3: Senda de la Torre y Fuentes</div>
+            <div class="bici-ruta-meta">MTB / Gravel · 18 km · +400m desnivel</div>
+          </div>
+          <a href="#" class="bici-link">Ver Track</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="container">
+    <p class="section-label">Galería</p>
+    <h2 class="section-title">Imágenes <em>del pueblo</em></h2>
+    <div class="divider"></div>
+    <div class="galeria-grid">
+      <div class="gal-item">
+        <img src="pueblo.jpg" alt="Vista panorámica de Matet">
+      </div>
+      <div class="gal-item">
+        <img src="pilon.jpg" alt="Torre del Pilón">
+      </div>
+      <div class="gal-item">
+        <img src="aceite.jpg" alt="Aceite virgen">
+      </div>
+      <div class="gal-item" style="background:#d8e8c8; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:3rem;">🌲</span>
+      </div>
+      <div class="gal-item" style="background:#c8d8e8; display:flex; align-items:center; justify-content:center;">
+        <span style="font-size:3rem;">💧</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="naturaleza">
+  <div class="container">
+    <p class="section-label">Entorno natural</p>
+    <h2 class="section-title">La <em>Sierra de Espadán</em></h2>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,0.8); max-width:640px; margin-bottom: 0;">Matet respira el aire del Parque Natural de la Sierra de Espadán, el espacio protegido más extenso de la provincia de Castellón y el segundo de la Comunitat Valenciana, con 31.180 hectáreas de naturaleza virgen.</p>
+    <div class="nat-grid">
+      <div class="nat-card">
+        <div class="nat-icon">🌲</div>
+        <div class="nat-title">Bosques únicos</div>
+        <div class="nat-text">Pinares de pino rodeno, alcornocales, encinas y bosque de ribera conforman uno de los ecosistemas forestales más singulares del territorio valenciano.</div>
+      </div>
+      <div class="nat-card">
+        <div class="nat-icon">💧</div>
+        <div class="nat-title">Agua por doquier</div>
+        <div class="nat-text">Fuentes, barrancos y ramblas jalonan el término municipal. La vida en Matet ha estado siempre íntimamente ligada al agua que brota de la montaña.</div>
+      </div>
+      <div class="nat-card">
+        <div class="nat-icon">🚵</div>
+        <div class="nat-title">Rutas y senderismo</div>
+        <div class="nat-text">La PR-CV 63 conecta Matet con los pueblos vecinos a través de paisajes espectaculares. Las rutas en bicicleta por el valle del Palancia son otra opción perfecta.</div>
+      </div>
+      <div class="nat-card">
+        <div class="nat-icon">🦅</div>
+        <div class="nat-title">Fauna silvestre</div>
+        <div class="nat-text">El parque alberga una rica fauna: rapaces, jabalíes, corzos y una gran variedad de aves hacen de este entorno un paraíso para los amantes de la naturaleza.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="llegada">
+  <div class="container">
+    <div class="llegada-grid">
+      <div class="llegada-info">
+        <p class="section-label">Información práctica</p>
+        <h2 class="section-title">Cómo <em>llegar</em></h2>
+        <div class="divider"></div>
+        <div class="llegada-dato">
+          <div class="llegada-icono">🚗</div>
+          <div>
+            <div class="llegada-dato-titulo">Desde Valencia</div>
+            <div class="llegada-dato-texto">68,8 km por la A-23 dirección Sagunto–Somport, salida Segorbe, enlazando con la CV-215. Aproximadamente 1 hora.</div>
+          </div>
+        </div>
+        <div class="llegada-dato">
+          <div class="llegada-icono">🚗</div>
+          <div>
+            <div class="llegada-dato-titulo">Desde Castellón de la Plana</div>
+            <div class="llegada-dato-texto">50 km por la A-23 hasta Segorbe y luego la CV-215. Unos 45 minutos de trayecto.</div>
+          </div>
+        </div>
+        <div class="llegada-dato">
+          <div class="llegada
