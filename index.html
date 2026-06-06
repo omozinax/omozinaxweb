@@ -227,7 +227,6 @@
     transition: filter 0.3s, transform 0.4s;
   }
   .lugar-card:hover .lugar-img { filter: saturate(1.1); transform: scale(1.02); }
-  .lugar-card { overflow: hidden; }
   .lugar-body { padding: 1.25rem 0; }
   .lugar-nombre {
     font-family: 'Playfair Display', serif;
@@ -356,7 +355,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -367,7 +365,6 @@
   </div>
 </section>
 
-<!-- INTRO -->
 <section id="intro">
   <div class="container">
     <div class="intro-grid">
@@ -401,7 +398,6 @@
   </div>
 </section>
 
-<!-- HISTORIA -->
 <section id="historia">
   <div class="container">
     <div class="historia-content">
@@ -442,7 +438,6 @@
   </div>
 </section>
 
-<!-- LUGARES DE INTERÉS -->
 <section id="lugares">
   <div class="container">
     <p class="section-label">Patrimonio</p>
@@ -451,16 +446,17 @@
     <div class="lugares-grid">
       <div class="lugar-card">
         <div style="overflow:hidden; height:220px;">
-          <img class="lugar-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Torre_del_Pil%C3%B3n_de_Matet.jpg/800px-Torre_del_Pil%C3%B3n_de_Matet.jpg" alt="Torre del Pilón" onerror="this.style.background='#e0ddd5';this.src='';this.alt='Torre del Pilón'">
+          <img class="lugar-img" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Torre_del_Pil%C3%B3n_de_Matet.jpg" alt="Torre del Pilón" onerror="this.style.background='#e0ddd5';this.alt='Torre del Pilón'">
         </div>
         <div class="lugar-body">
           <div class="lugar-nombre">Torre del Pilón</div>
-          <div class="lugar-desc">Torre defensiva árabe del siglo XI que corona la colina donde se asienta el pueblo. Restaurada y declarada Bien de Interés Cultural, desde su cima se dominan vistas impresionantes de la sierra.</div>
+          <div class="lugar-desc">Torre defensiva árabe del siglo XI que corona la colina donde se asienta el pueblo. Restaurada y declarada Bien de Interés Cultural, desde su cima se dominan vistas impresionante de la sierra.</div>
         </div>
       </div>
       <div class="lugar-card">
-        <div style="overflow:hidden; height:220px; background:#c8d8b0; display:flex; align-items:center; justify-content:center;">
-          <span style="color:#3B6D11; font-size:3rem;">⛪</span>
+        <div style="overflow:hidden; height:220px; background:#c8d8b0; display:flex; align-items:center; justify-content:center; position:relative;">
+          <img class="lugar-img" src="https://upload.wikimedia.org/wikipedia/commons/0/06/Matet2008.jpg" alt="Iglesia de San Juan Bautista" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1;">
+          <span style="color:#3B6D11; font-size:3rem; position:relative; z-index:2; text-shadow: 0px 0px 10px rgba(255,255,255,0.8);">⛪</span>
         </div>
         <div class="lugar-body">
           <div class="lugar-nombre">Iglesia de San Juan Bautista</div>
@@ -468,8 +464,9 @@
         </div>
       </div>
       <div class="lugar-card">
-        <div style="overflow:hidden; height:220px; background:#d8c8a0; display:flex; align-items:center; justify-content:center;">
-          <span style="color:#854F0B; font-size:3rem;">🫒</span>
+        <div style="overflow:hidden; height:220px; background:#d8c8a0; display:flex; align-items:center; justify-content:center; position:relative;">
+          <img class="lugar-img" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Aceite_de_oliva_virgen.jpg" alt="El Ruejo y la Almazara" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; opacity:0.85;">
+          <span style="color:#854F0B; font-size:3rem; position:relative; z-index:2; text-shadow: 0px 0px 10px rgba(255,255,255,0.8);">🫒</span>
         </div>
         <div class="lugar-body">
           <div class="lugar-nombre">El Ruejo y la Almazara</div>
@@ -507,7 +504,6 @@
   </div>
 </section>
 
-<!-- GALERÍA -->
 <section id="galeria" style="padding: 5rem 2.5rem;">
   <div class="container">
     <p class="section-label">Galería</p>
@@ -518,7 +514,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Matet2008.jpg/1280px-Matet2008.jpg" alt="Vista panorámica de Matet" onerror="this.style.background='#c8d8b0'">
       </div>
       <div class="gal-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Torre_del_Pil%C3%B3n_de_Matet.jpg/800px-Torre_del_Pil%C3%B3n_de_Matet.jpg" alt="Torre  del Pilón" onerror="this.style.background='#d8c8a0'">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Torre_del_Pil%C3%B3n_de_Matet.jpg" alt="Torre del Pilón" onerror="this.style.background='#d8c8a0'">
       </div>
       <div class="gal-item" style="background:#b8d4c0; display:flex; align-items:center; justify-content:center;">
         <span style="font-size:3rem;">🌲</span>
@@ -533,7 +529,6 @@
   </div>
 </section>
 
-<!-- NATURALEZA -->
 <section id="naturaleza">
   <div class="container">
     <p class="section-label">Entorno natural</p>
@@ -565,7 +560,6 @@
   </div>
 </section>
 
-<!-- CÓMO LLEGAR -->
 <section id="llegada">
   <div class="container">
     <div class="llegada-grid">
@@ -614,7 +608,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2026 <span>Matet</span> · Sierra de Espadán, Castellón · Diseñado con 💚</p>
 </footer>
