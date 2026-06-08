@@ -296,6 +296,80 @@ section{padding:7rem 4.5rem}
 .p-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin-bottom:1rem;color:var(--carbon)}
 .p-desc{font-size:0.9rem;color:var(--grafito)}
 
+/* ── GALERÍA DE FOTOS ── */
+#galeria{background:var(--pergamino)}
+.galeria-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.8rem;
+}
+.galeria-header .section-h { margin-bottom: 0; }
+.galeria-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--oliva);
+  border: 1px solid var(--oliva);
+  padding: 0.6rem 1.5rem;
+  transition: background 0.3s, color 0.3s;
+}
+.galeria-cta-btn:hover {
+  background: var(--oliva);
+  color: #fff;
+}
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-auto-rows: 240px;
+  gap: 1rem;
+}
+.galeria-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--blanco);
+  border: 1px solid rgba(90,80,50,0.08);
+}
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.galeria-item:hover img {
+  transform: scale(1.05);
+}
+.galeria-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.galeria-item:hover .galeria-info {
+  opacity: 1;
+}
+.galeria-info p {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+.galeria-info span {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 /* ── BICIVOLADORES ── */
 #bicivoladores{background:var(--negro-noche);color:#fff}
 #bicivoladores .section-h, #bicivoladores .section-h em{color:#fff}
@@ -342,6 +416,7 @@ footer{
     <li><a href="#intro">El Pueblo</a></li>
     <li><a href="#historia">Historia</a></li>
     <li><a href="#patrimonio">Qué Ver</a></li>
+    <li><a href="#galeria">Galería</a></li>
     <li><a href="#bicivoladores" class="bici-link">Bicivoladores</a></li>
     <li><a href="#practico">Cómo Llegar</a></li>
   </ul>
@@ -453,6 +528,43 @@ footer{
         <span class="p-num">03 — Almazara</span>
         <h3 class="p-title">El Ruejo</h3>
         <p class="p-desc">Antigua piedra de molino que rinde homenaje a la producción tradicional de aceite de oliva, el gran orgullo local.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="container">
+    <div class="label-tiny">Comunidad</div>
+    <div class="galeria-header">
+      <h2 class="section-h">Galería <em>Vecinal</em></h2>
+      <a href="#" class="galeria-cta-btn">Enviar mi foto</a>
+    </div>
+    <div class="rule"></div>
+    
+    <div class="galeria-grid">
+      <div class="galeria-item">
+        <img src="amanecer_matet.jpg" alt="Amanecer en Matet por Octavio Molina">
+        <div class="galeria-info">
+          <p>Amanecer en Matet</p>
+          <span>Por Octavio Molina</span>
+        </div>
+      </div>
+      
+      <div class="galeria-item">
+        <img src="pueblo.jpeg" alt="Panorámica de Matet">
+        <div class="galeria-info">
+          <p>Panorámica del pueblo</p>
+          <span>Por Administrador</span>
+        </div>
+      </div>
+
+      <div class="galeria-item">
+        <div style="width:100%; height:100%; background:var(--oliva-claro); display:flex; align-items:center; justify-content:center; color:#fff; font-size:2rem;">📷</div>
+        <div class="galeria-info">
+          <p>Ruta de los Barrancos</p>
+          <span>Espacio libre</span>
+        </div>
       </div>
     </div>
   </div>
