@@ -1,45 +1,522 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matet — Sierra de Espadán</title>
-    <style>
-        /* Estilos básicos de limpieza para evitar fallos de visualización */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background-color: #FAF6EE;
-            color: #1C1A16;
-            line-height: 1.6;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        h1 {
-            font-size: 3rem;
-            color: #3B5E0F;
-            margin-bottom: 1rem;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #3A3830;
-            max-width: 600px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matet — Sierra de Espadán</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --oliva:#3B5E0F;
+  --oliva-med:#527A18;
+  --oliva-claro:#A8C66D;
+  --oliva-palido:#EBF2DA;
+  --tierra:#7A3B0A;
+  --tierra-claro:#D4895A;
+  --arena:#FAF6EE;
+  --pergamino:#F3EDE0;
+  --carbon:#1C1A16;
+  --grafito:#3A3830;
+  --ceniza:#8A8880;
+  --humo:#C8C5BC;
+  --blanco:#FFFCF5;
+  --naranja-bici:#D94F1A;
+  --negro-noche:#111009;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Jost',sans-serif;background:var(--arena);color:var(--carbon);font-weight:300;line-height:1.75;overflow-x:hidden}
+
+/* ── CURSOR ── */
+body{cursor:crosshair}
+a,button{cursor:pointer}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--pergamino)}
+::-webkit-scrollbar-thumb{background:var(--oliva-med)}
+
+/* ══════════════ NAV ══════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:64px;
+  background:rgba(250,246,238,0.9);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(90,80,50,0.12);
+  transition:background 0.4s,box-shadow 0.4s;
+}
+nav.scrolled{background:rgba(250,246,238,0.98);box-shadow:0 2px 24px rgba(0,0,0,0.07)}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:600;
+  color:var(--oliva);letter-spacing:0.04em;
+  text-decoration:none;
+}
+.nav-logo span{font-weight:300;font-style:italic;color:var(--tierra-claro)}
+.nav-menu{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-menu a{
+  text-decoration:none;
+  font-size:0.72rem;font-weight:500;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--grafito);
+  position:relative;padding-bottom:2px;
+  transition:color 0.2s;
+}
+.nav-menu a::after{
+  content:'';position:absolute;bottom:0;left:0;right:100%;
+  height:1px;background:var(--oliva-med);
+  transition:right 0.3s ease;
+}
+.nav-menu a:hover{color:var(--oliva)}
+.nav-menu a:hover::after{right:0}
+.nav-menu .bici-link{color:var(--naranja-bici)!important}
+.nav-menu .bici-link::after{background:var(--naranja-bici)!important}
+
+/* ══════════════ HERO ══════════════ */
+.hero{
+  position:relative;height:100vh;min-height:600px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+}
+.hero-media{
+  position:absolute;inset:0;
+  background:url('pueblo.jpeg') center/cover no-repeat;
+  transform:scale(1.05);
+  transition:transform 8s ease;
+}
+.hero-media::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(
+    165deg,
+    rgba(18,16,10,0.15) 0%,
+    rgba(18,16,10,0.08) 30%,
+    rgba(18,16,10,0.62) 75%,
+    rgba(18,16,10,0.82) 100%
+  );
+}
+.hero.loaded .hero-media{transform:scale(1)}
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 4.5rem 4rem;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:flex-end;
+  gap:2rem;
+}
+.hero-main-layout {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+}
+.hero-left{}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--tierra-claro);font-weight:500;
+  margin-bottom:1.2rem;
+}
+.hero-tag::before{content:'';width:28px;height:1px;background:var(--tierra-claro)}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(5rem,10vw,9rem);
+  font-weight:300;color:#fff;
+  line-height:0.95;letter-spacing:-0.01em;
+  margin-bottom:1.5rem;
+}
+.hero h1 em{font-style:italic;font-weight:300}
+.hero-desc{
+  font-size:1rem;color:rgba(255,255,255,0.72);
+  font-weight:300;max-width:420px;line-height:1.7;
+  margin-bottom:2rem;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:0.8rem;
+  text-decoration:none;
+  font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;
+  font-weight:500;color:#fff;
+  border:1px solid rgba(255,255,255,0.5);
+  padding:0.85rem 2.2rem;
+  transition:background 0.3s,border-color 0.3s;
+}
+.hero-cta::after{content:'↓';font-size:0.9rem;letter-spacing:0}
+.hero-cta:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.85)}
+.hero-right{
+  display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem;
+  padding-bottom:0.5rem;
+}
+.hero-stat{text-align:right}
+.hero-stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:300;color:#fff;
+  line-height:1;display:block;
+}
+.hero-stat-lbl{
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);display:block;margin-top:0.2rem;
+}
+.hero-stat-divider{width:1px;height:32px;background:rgba(255,255,255,0.2)}
+
+/* ── MARQUEE ── */
+.marquee-strip{
+  background:var(--oliva);
+  overflow:hidden;white-space:nowrap;
+  padding:0.85rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.marquee-inner{
+  display:inline-flex;gap:3rem;
+  animation:marquee 22s linear infinite;
+}
+.marquee-inner span{
+  font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);font-weight:500;
+}
+.marquee-inner span.dot{color:var(--oliva-claro);font-size:0.5rem}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SECCIONES BASE ── */
+section{padding:7rem 4.5rem}
+.container{max-width:1100px;margin:0 auto}
+.label-tiny{
+  font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--oliva-med);font-weight:500;
+  display:flex;align-items:center;gap:0.6rem;
+  margin-bottom:0.8rem;
+}
+.label-tiny::before{content:'';width:22px;height:1px;background:var(--oliva-med)}
+.section-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,4vw,3.6rem);
+  font-weight:300;line-height:1.15;
+  color:var(--carbon);
+  margin-bottom:1.8rem;
+}
+.section-h em{font-style:italic;color:var(--oliva)}
+.rule{width:52px;height:1.5px;background:var(--oliva-claro);margin-bottom:2.5rem}
+
+/* ── INTRO ── */
+#intro{background:var(--blanco)}
+.intro-grid{
+  display:grid;grid-template-columns:1.1fr 0.9fr;
+  gap:6rem;align-items:center;
+}
+.intro-text p{color:var(--grafito);margin-bottom:1.2rem;font-size:1rem;line-height:1.85}
+.intro-mosaic{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:160px 160px;
+  gap:0.6rem;
+}
+.mosaic-a{grid-row:1/3;grid-column:1}
+.mosaic-b{grid-row:1;grid-column:2}
+.mosaic-c{grid-row:2;grid-column:2}
+.mosaic-a,.mosaic-b,.mosaic-c{overflow:hidden}
+.mosaic-a img,.mosaic-b img,.mosaic-c img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  transition:transform 0.6s ease,filter 0.4s ease;
+  filter:saturate(0.85);
+}
+.mosaic-a:hover img,.mosaic-b:hover img,.mosaic-c:hover img{
+  transform:scale(1.06);filter:saturate(1.05);
+}
+.mosaic-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.4rem;
+}
+.stat-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;margin-top:4rem;
+  border:1px solid rgba(90,80,50,0.12);
+}
+.stat-item{
+  padding:1.8rem 1.5rem;
+  border-right:1px solid rgba(90,80,50,0.12);
+  position:relative;
+  overflow:hidden;
+  transition:background 0.3s;
+}
+.stat-item:last-child{border-right:none}
+.stat-item::before{
+  content:'';position:absolute;bottom:0;left:0;right:100%;height:2px;
+  background:var(--oliva-med);transition:right 0.4s ease;
+}
+.stat-item:hover::before{right:0}
+.stat-item:hover{background:var(--oliva-palido)}
+.stat-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.6rem;font-weight:300;color:var(--oliva);
+  line-height:1;display:block;margin-bottom:0.3rem;
+}
+.stat-l{
+  font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--ceniza);
+}
+
+/* ── HISTORIA ── */
+#historia{background:var(--pergamino)}
+.historia-wrap{
+  display:grid;grid-template-columns:220px 1fr;
+  gap:5rem;align-items:start;
+}
+.timeline{position:relative;padding-top:0.5rem}
+.timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:1px;background:linear-gradient(to bottom,var(--oliva-med),transparent);
+}
+.t-item{
+  padding-left:1.8rem;margin-bottom:2.5rem;position:relative;
+}
+.t-date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:600;color:var(--tierra);
+  line-height:1.2;margin-bottom:0.4rem;display:block;
+}
+.t-text{font-size:0.95rem;color:var(--grafito)}
+
+/* ── PATRIMONIO / GRID ── */
+#patrimonio{background:var(--blanco)}
+.patrimonio-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:2.5rem;margin-top:3rem;
+}
+.p-card{
+  background:var(--arena);padding:2.5rem;
+  border:1px solid rgba(90,80,50,0.08);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.p-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(90,80,50,0.06);
+}
+.p-num{font-size:0.75rem;color:var(--ceniza);letter-spacing:0.1em;margin-bottom:1rem;display:block}
+.p-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;margin-bottom:1rem;color:var(--carbon)}
+.p-desc{font-size:0.9rem;color:var(--grafito)}
+
+/* ── BICIVOLADORES ── */
+#bicivoladores{background:var(--negro-noche);color:#fff}
+#bicivoladores .section-h, #bicivoladores .section-h em{color:#fff}
+.bici-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+.bici-content h3{font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:1.5rem;color:var(--naranja-bici)}
+.bici-content p{color:rgba(255,255,255,0.75);margin-bottom:1.5rem}
+.bici-routes{display:flex;flex-direction:column;gap:1.5rem}
+.route-item{
+  background:rgba(255,255,255,0.04);padding:1.5rem;
+  border-left:3px solid var(--naranja-bici);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.route-info h4{font-size:1.1rem;margin-bottom:0.3rem}
+.route-info span{font-size:0.8rem;color:rgba(255,255,255,0.5)}
+.route-btn{
+  text-decoration:none;color:#fff;font-size:0.75rem;letter-spacing:0.1em;
+  text-transform:uppercase;border:1px solid rgba(255,255,255,0.2);
+  padding:0.5rem 1rem;transition:background 0.3s;margin-left:auto;
+}
+.route-btn:hover{background:var(--naranja-bici);border-color:var(--naranja-bici)}
+
+/* ── PRACTICO ── */
+#practico{background:var(--arena)}
+.practico-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+}
+.info-block{margin-bottom:2rem}
+.info-block h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:0.5rem}
+
+footer{
+  background:var(--carbon);color:rgba(255,255,255,0.4);
+  padding:3rem 4.5rem;text-align:center;font-size:0.8rem;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+</style>
 </head>
 <body>
 
-    <h1>Matet</h1>
-    <p>Sitio web en mantenimiento. Próximamente estará disponible toda la información sobre el pueblo y la Sierra de Espadán.</p>
+<nav>
+  <a href="#" class="nav-logo">Matet<span>·Espadán</span></a>
+  <ul class="nav-menu">
+    <li><a href="#intro">El Pueblo</a></li>
+    <li><a href="#historia">Historia</a></li>
+    <li><a href="#patrimonio">Qué Ver</a></li>
+    <li><a href="#bicivoladores" class="bici-link">Bicivoladores</a></li>
+    <li><a href="#practico">Cómo Llegar</a></li>
+  </ul>
+</nav>
+
+<div class="hero loaded">
+  <div class="hero-media"></div>
+  <div class="hero-content">
+    <div class="hero-main-layout">
+      <div class="hero-left">
+        <div class="hero-tag">Sierra de Espadán · Castellón · 680 m</div>
+        <h1>Matet</h1>
+        <p class="hero-desc">Un tesoro escondido en el corazón del Parque Natural, a los pies de una torre árabe milenaria.</p>
+        <a href="#intro" class="hero-cta">Descubrir el pueblo</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat">
+        <span class="hero-stat-num">94</span>
+        <span class="hero-stat-lbl">Habitantes</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">S. XII</span>
+        <span class="hero-stat-lbl">Origen árabe</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Parque Natural Sierra de Espadán</span><span class="dot">•</span>
+    <span>Alto Palancia · Castellón</span><span class="dot">•</span>
+    <span>Torre del Pilón · BIC</span><span class="dot">•</span>
+    <span>Aceite de Oliva Virgen Extra</span><span class="dot">•</span>
+    <span>Peña Bicivoladores</span><span class="dot">•</span>
+  </div>
+</div>
+
+<section id="intro">
+  <div class="container intro-grid">
+    <div class="intro-text">
+      <div class="label-tiny">El pueblo</div>
+      <h2 class="section-h">Un pueblo entre <em>montañas</em></h2>
+      <div class="rule"></div>
+      <p>Matet es un municipio de la comarca del Alto Palancia, situado en la vertiente septentrional de la Sierra de Espadán. Sus calles estrechas y adaptadas a las curvas del terreno revelan su origen árabe, y el paisaje que lo rodea lo convierten en un destino singular.</p>
+      <p>El pueblo crece a la sombra de la Torre del Pilón, una torre defensiva árabe del siglo XI que corona la colina sobre la que se asienta el casco urbano. Flanqueado por el barranco del Pilar y la rambla del Perrudo, Matet vive ligado al agua y a la tierra desde tiempos inmemoriales.</p>
+    </div>
+    <div class="intro-mosaic">
+      <div class="mosaic-a"><div class="mosaic-placeholder" style="background:var(--oliva-med);color:#fff">🌲</div></div>
+      <div class="mosaic-b"><div class="mosaic-placeholder" style="background:var(--tierra-claro);color:#fff">🏰</div></div>
+      <div class="mosaic-c"><div class="mosaic-placeholder" style="background:var(--oliva-claro);color:#fff">💧</div></div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="stat-row">
+      <div class="stat-item"><span class="stat-n">94</span><span class="stat-l">Habitantes</span></div>
+      <div class="stat-item"><span class="stat-n">14,89</span><span class="stat-l">km² término</span></div>
+      <div class="stat-item"><span class="stat-n">S. XII</span><span class="stat-l">Origen árabe</span></div>
+      <div class="stat-item"><span class="stat-n">680 m</span><span class="stat-l">Altitud</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="historia">
+  <div class="container historia-wrap">
+    <div>
+      <div class="label-tiny">Historia</div>
+      <h2 class="section-h">Siglos de <em>historia</em></h2>
+      <div class="rule"></div>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <span class="t-date">S. XII–XIII</span>
+        <p class="t-text">Fundación del núcleo de población de origen árabe, cuyo trazado urbano aún se conserva con celo.</p>
+      </div>
+      <div class="t-item">
+        <span class="t-date">1238</span>
+        <p class="t-text">Tras la Reconquista de Jaime I, el pueblo es donado a Berenguer de Palou, obispo de Barcelona.</p>
+      </div>
+      <div class="t-item">
+        <span class="t-date">1582</span>
+        <p class="t-text">Se otorga la Carta Puebla de Matet por los Condes de Aranda en la Vall de Almonacid, consolidando su repoblación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="patrimonio">
+  <div class="container">
+    <div class="label-tiny">Patrimonio</div>
+    <h2 class="section-h">Qué ver y <em>visitar</em></h2>
+    <div class="rule"></div>
+    
+    <div class="patrimonio-grid">
+      <div class="p-card">
+        <span class="p-num">01 — Torre</span>
+        <h3 class="p-title">Torre del Pilón</h3>
+        <p class="p-desc">Torre defensiva árabe del siglo XI que corona la colina. Declarada BIC, ofrece vistas espectaculares de toda la sierra.</p>
+      </div>
+      <div class="p-card">
+        <span class="p-num">02 — Iglesia</span>
+        <h3 class="p-title">San Juan Bautista</h3>
+        <p class="p-desc">Templo parroquial del siglo XVII de una sola nave con capillas. Su campanario es el gran referente visual del pueblo.</p>
+      </div>
+      <div class="p-card">
+        <span class="p-num">03 — Almazara</span>
+        <h3 class="p-title">El Ruejo</h3>
+        <p class="p-desc">Antigua piedra de molino que rinde homenaje a la producción tradicional de aceite de oliva, el gran orgullo local.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bicivoladores">
+  <div class="container bici-grid">
+    <div class="bici-content">
+      <div class="label-tiny" style="color:var(--naranja-bici)">Club Ciclista</div>
+      <h2 class="section-h">Peña <em>Bicivoladores</em></h2>
+      <div class="rule" style="background:var(--naranja-bici)"></div>
+      <p>El grupo de ciclismo de Matet. Apasionados de las dos ruedas, las sendas de la Sierra de Espadán y, por supuesto, del buen ambiente y los almuerzos tradicionales en el pueblo.</p>
+    </div>
+    <div class="bici-routes">
+      <div class="route-item">
+        <div class="route-info">
+          <h4>Vuelta a los Barrancos</h4>
+          <span>MTB • 32 km • +850 m</span>
+        </div>
+        <a href="#" class="route-btn">Track</a>
+      </div>
+      <div class="route-item">
+        <div class="route-info">
+          <h4>Subida al Alto de Espadán</h4>
+          <span>Carretera • 45 km • +1.100 m</span>
+        </div>
+        <a href="#" class="route-btn">Track</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="practico">
+  <div class="container">
+    <div class="label-tiny">Información Práctica</div>
+    <h2 class="section-h">Cómo <em>llegar</em></h2>
+    <div class="rule"></div>
+    <div class="practico-grid">
+      <div class="info-block">
+        <h4>🚗 Desde Valencia</h4>
+        <p>68,8 km por la A-23 dirección Sagunto–Somport, salida Segorbe, enlazando con la CV-215. Aproximadamente 1 hora de trayecto.</p>
+      </div>
+      <div class="info-block">
+        <h4>🚗 Desde Castellón</h4>
+        <p>50 km por la A-23 hasta Segorbe y luego tomando el desvío hacia la CV-215. Unos 45 minutos en coche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Matet, Castellón · Alto Palancia · Comunitat Valenciana</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', function() {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+</script>
 
 </body>
 </html>
